@@ -10,31 +10,25 @@
   yesterday.body<-as.character(yesterday.date,format="%A %B %d, %Y")
   report.filename<-paste0(yesterday.filename,"_BSTAR_Report.pdf")
   email.recipients<-c(
-      "cboyles@dfwairport.com",
-      "herricks@illinois.edu",
-      "sagth70@gmail.com",
-      "ccanadensis@gmail.com",
-      "urbanbirdbrain@gmail.com",
-      "woodwrth@illinois.edu",
-      "dmayer2@illinois.edu",
-      "shmajumd@illinois.edu"
+      "user1@example.com",
+      "user2@example.com
       )
   email.subject<-paste("DFW BSTAR V2:",yesterday.filename,"Daily Report")
   email.body<-paste('Attached is a bird activity summary report for',yesterday.body,'at Dallas Fort Worth International Airport. The complete archive of automatic BSTAR V2 Reporting is available at the following link: <a href="https://uofi.box.com/s/h3ca0l8wwm0d7j2s0xz70i2brs6qnsq1">BSTAR V2 Reporting Archive</a>. Additionally, the most recent 30 days of BSTAR video is available for playback at the following link: <a href="https://uofi.box.com/s/rl5qe7w7zsnlgacafd8izzit5x34lfs3">BSTAR V2 Video Archive</a>. <br />
                     <br />
                     <br />
-                    If you have questions, comments or suggestions please contact <a href="mailto:dmayer2@illinois.edu">Dave Mayer</a>.<br />
+                    If you have questions, comments or suggestions please contact <a href="mailto:admin@example.com">Admin</a>.<br />
                     ')
 #Create Today's report  
   rmarkdown::render('/home/mayer/BSTAR_Reporting/BSTAR_Report.Rmd',output_file = report.filename)
   
 #Mail it!
-  send.mail(from = "ceat-asm@illinois.edu",
+  send.mail(from = "sender@example.com",
           to = email.recipients,
           subject = email.subject,
           body = email.body,
           html = TRUE,
-          smtp = list(host.name = "smtp.gmail.com", port = 465, user.name = "herricks.group@gmail.com", passwd = "piscine", ssl = TRUE),
+          smtp = list(host.name = "smtp.gmail.com", port = 465, user.name = "sender@gmail.com", passwd = "password", ssl = TRUE),
           authenticate = TRUE,
           send = TRUE,
           attach.files = c(file.path("/home/mayer/BSTAR_Reporting",report.filename))
